@@ -103,7 +103,7 @@ export function InvoiceCreationForm() {
         />
 
         <Button type='submit'>
-          Create invoice <PlusIcon className='ml-1 size-4' />
+          Submit <PlusIcon className='ml-1 size-4' />
         </Button>
       </form>
     </Form>

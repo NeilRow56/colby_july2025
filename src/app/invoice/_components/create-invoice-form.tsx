@@ -17,7 +17,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { PlusIcon } from 'lucide-react'
 import { Textarea } from '@/components/ui/textarea'
-import { invoiceSchema } from '../schema'
+import { invoiceSchema } from '@/zod/invoice-schema'
 
 export function InvoiceCreationForm() {
   const form = useForm({

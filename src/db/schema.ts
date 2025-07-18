@@ -7,6 +7,7 @@ import {
   text,
   timestamp
 } from 'drizzle-orm/pg-core'
+import { relations } from 'drizzle-orm'
 
 export type Status = (typeof AVAILABLE_STATUSES)[number]['id']
 
@@ -22,7 +23,6 @@ export const Invoices = pgTable('invoices', {
   createTs: timestamp('createTs').defaultNow().notNull(),
   value: integer('value').notNull(),
   description: text('description').notNull(),
-  userId: text('userId').notNull(),
   organizationId: text('organizationId'),
   customerId: integer('customerId')
     .notNull()
@@ -38,3 +38,15 @@ export const Customers = pgTable('customers', {
   userId: text('userId').notNull(),
   organizationId: text('organizationId')
 })
+
+// Create relations
+export const customersRelations = relations(Customers, ({ many }) => ({
+  Invoices: many(Invoices)
+}))
+
+export const ticketsRelations = relations(Invoices, ({ one }) => ({
+  customer: one(Customers, {
+    fields: [Invoices.customerId],
+    references: [Customers.id]
+  })
+}))

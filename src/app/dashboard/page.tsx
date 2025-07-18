@@ -15,7 +15,7 @@ import Link from 'next/link'
 
 export default function DashboardPage() {
   return (
-    <main className='mx-auto my-12 flex h-full max-w-5xl flex-col justify-center gap-6 text-center'>
+    <main className=''>
       <div className='text-left-2 flex justify-between px-4'>
         <h1 className='text-3xl font-bold'>Invoices</h1>
         <Button asChild className='hover:bg-primary/70 inline-flex gap-2'>

@@ -30,6 +30,8 @@ export const Invoices = pgTable('invoices', {
   status: statusEnum('status').notNull()
 })
 
+export type Invoice = typeof Invoices.$inferSelect
+
 export const Customers = pgTable('customers', {
   id: serial('id').primaryKey().notNull(),
   createTs: timestamp('createTs').defaultNow().notNull(),
@@ -38,6 +40,8 @@ export const Customers = pgTable('customers', {
   userId: text('userId').notNull(),
   organizationId: text('organizationId')
 })
+
+export type Customer = typeof Customers.$inferSelect
 
 // Create relations
 export const customersRelations = relations(Customers, ({ many }) => ({

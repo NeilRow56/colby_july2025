@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { ClerkProvider } from '@clerk/nextjs'
 
 import './globals.css'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 const openSans = localFont({
   src: '/fonts/OpenSans-VariableFont_wdth,wght.ttf',
@@ -25,12 +28,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body
-        className={`${openSans.className} ${roboto.className} font-sans antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang='en'>
+        <body
+          className={`${openSans.className} ${roboto.className} grid min-h-svh grid-rows-[auto_1fr_auto] font-sans antialiased`}
+        >
+          <Header />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }

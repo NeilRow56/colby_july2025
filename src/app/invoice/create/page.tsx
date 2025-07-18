@@ -10,11 +10,11 @@ import {
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import { InvoiceCreationForm } from '../_components/create-invoice-form'
+import InvoiceCreationForm from '../_components/create-invoice-form'
 
 export default function CreateInvoicePage() {
   return (
-    <main className='mx-auto my-12 flex h-full max-w-5xl flex-col justify-center gap-6 text-center'>
+    <main className='mx-auto my-12 flex min-w-2xl flex-col'>
       <div className='mb-8 flex items-center gap-4'>
         <Link
           href='/invoives'
@@ -25,7 +25,6 @@ export default function CreateInvoicePage() {
         >
           <ArrowLeft className='size-4' />
         </Link>
-        <h1 className='text-2xl font-bold'>Create Invoice</h1>
       </div>
       <Card>
         <CardHeader>

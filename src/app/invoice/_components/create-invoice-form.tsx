@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '@/components/ui/button'
-import { invoiceSchema } from '@/zod/invoice-schema'
+import { invoiceSchema } from '@/zod/schema'
 import { Invoice } from '@/db/schema'
 import { z } from 'zod/v4'
 import {
@@ -117,7 +117,7 @@ export default function InvoiceCreationForm({ invoice }: InvoicesFormProps) {
             <div className='flex gap-2'>
               <Button
                 type='submit'
-                className='w-3/4'
+                className='w-[150px]'
                 variant='default'
                 title='Save'
               >

@@ -5,6 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { Toaster } from '@/components/ui/sonner'
 
 const openSans = localFont({
   src: '/fonts/OpenSans-VariableFont_wdth,wght.ttf',
@@ -35,6 +36,18 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <Toaster
+            position='bottom-center'
+            toastOptions={{
+              unstyled: true,
+              classNames: {
+                error: 'bg-red-600',
+                success: 'text-green-700',
+                warning: 'text-yellow-700',
+                info: 'bg-blue-700'
+              }
+            }}
+          />
           <Footer />
         </body>
       </html>

@@ -19,12 +19,14 @@ export const statusEnum = pgEnum(
 )
 
 export const Invoices = pgTable('invoices', {
-  id: serial('id').primaryKey().notNull(),
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  serial: serial(),
   createTs: timestamp('createTs').defaultNow().notNull(),
   value: integer('value').notNull(),
   description: text('description').notNull(),
-  organizationId: text('organizationId'),
-  customerId: integer('customerId')
+  customerId: text('customerId')
     .notNull()
     .references(() => Customers.id),
   status: statusEnum('status').notNull()
@@ -33,12 +35,12 @@ export const Invoices = pgTable('invoices', {
 export type Invoice = typeof Invoices.$inferSelect
 
 export const Customers = pgTable('customers', {
-  id: serial('id').primaryKey().notNull(),
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
   createTs: timestamp('createTs').defaultNow().notNull(),
   name: text('name').notNull(),
-  email: text('email').notNull(),
-  userId: text('userId').notNull(),
-  organizationId: text('organizationId')
+  email: text('email').notNull()
 })
 
 export type Customer = typeof Customers.$inferSelect
@@ -48,7 +50,7 @@ export const customersRelations = relations(Customers, ({ many }) => ({
   Invoices: many(Invoices)
 }))
 
-export const ticketsRelations = relations(Invoices, ({ one }) => ({
+export const invoiceRelations = relations(Invoices, ({ one }) => ({
   customer: one(Customers, {
     fields: [Invoices.customerId],
     references: [Customers.id]

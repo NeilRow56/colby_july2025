@@ -15,7 +15,7 @@ export async function getCustomers() {
 }
 
 export async function createCustomer(
-  customer: Omit<Customer, 'id' | 'createTs' | ' organizationId' | 'userId'>
+  customer: Omit<Customer, 'id' | 'createTs' | 'userId'>
 ) {
   try {
     await db.insert(Customers).values(customer)
@@ -25,9 +25,7 @@ export async function createCustomer(
   }
 }
 
-export async function updateCustomer(
-  customer: Omit<Customer, 'createTs' | 'organizationId' | 'userId'>
-) {
+export async function updateCustomer(customer: Omit<Customer, 'createTs'>) {
   try {
     await db
       .update(Customers)

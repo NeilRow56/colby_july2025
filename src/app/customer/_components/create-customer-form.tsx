@@ -42,8 +42,7 @@ export default function CreateCustomerForm({ customer }: CustomerFormProps) {
 
     try {
       const customerData = {
-        ...values,
-        organizationId: '121'
+        ...values
       }
 
       if (customer) {
